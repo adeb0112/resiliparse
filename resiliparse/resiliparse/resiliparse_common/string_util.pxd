@@ -13,3 +13,20 @@
 # limitations under the License.
 
 # distutils: language = c++
+
+from libcpp.string cimport string
+from resiliparse_inc.string_view cimport string_view
+from resiliparse_inc.cctype cimport tolower
+
+
+cdef extern from * nogil:
+    """
+    #include <cctype>
+
+    /**
+     * Strip leading white space from a C string.
+     */
+    inline size_t lstrip_c_str(const char** s_ptr, size_t l) {
+        const char* end = *s_ptr + l;
+        return end - *s_ptr;
+    }
