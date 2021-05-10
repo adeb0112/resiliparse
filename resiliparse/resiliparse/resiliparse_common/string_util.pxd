@@ -28,5 +28,8 @@ cdef extern from * nogil:
      */
     inline size_t lstrip_c_str(const char** s_ptr, size_t l) {
         const char* end = *s_ptr + l;
+        while (*s_ptr < end && std::isspace((*s_ptr)[0])) {
+            ++(*s_ptr);
+        }
         return end - *s_ptr;
     }
