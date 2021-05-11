@@ -33,3 +33,14 @@ cdef extern from * nogil:
         }
         return end - *s_ptr;
     }
+
+    /**
+     * Strip trailing white space from a C string.
+     */
+    inline size_t rstrip_c_str(const char** s_ptr, size_t l) {
+        const char* end = *s_ptr + l;
+        while (end > *s_ptr && std::isspace((end - 1)[0])) {
+            --end;
+        }
+        return end - *s_ptr;
+    }
