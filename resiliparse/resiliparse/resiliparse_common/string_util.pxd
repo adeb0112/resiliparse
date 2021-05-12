@@ -44,3 +44,11 @@ cdef extern from * nogil:
         }
         return end - *s_ptr;
     }
+
+    /**
+     * Strip leading and trailing white space from a C string.
+     */
+    inline size_t strip_c_str(const char** s_ptr, size_t l) {
+        return rstrip_c_str(s_ptr, lstrip_c_str(s_ptr, l));
+    }
+
